@@ -3,6 +3,8 @@
     margin: 0;
     box-sizing: border-box;
     --generalPaddingLeft: 2rem; 
+    --principal-color: #3D72FD;
+    --text-white: #f1f1f1;
 }
 @font-face {
     font-family: 'Sansation';
@@ -13,8 +15,7 @@
 .main-container{
     font-family: 'Sansation';
     display: grid;
-    grid-template-columns: repeat(12,1fr);
-    
+    grid-template-columns: repeat(12,1fr);    
     height: 100vh;
 }   
 header {    
@@ -45,6 +46,13 @@ header {
     justify-content: center;
     align-items: center;
 }
+.get-started-container a{
+    background-color: var(--principal-color);        
+    color: var(--text-white);
+    border-radius: 8px;    
+    padding: 1rem;    
+    text-decoration: none;
+}
 .img-store-container {
     grid-column: 9/13;   
     grid-row: 1/8;        
@@ -57,7 +65,6 @@ header {
 .img-store-container img {    
     height: 100%;
 }
-
 .presentation-section {
     grid-column: 1/9;            
     display: grid;
@@ -79,8 +86,28 @@ header {
 h1 {
     font-size: 2.5rem;
 } 
-
 .margin-p {
     margin-top: 2rem;
     margin-bottom: 2rem;
+}
+@media screen and (max-width: 768px) {
+    .presentation-container {
+        grid-column: 2/8;        
+    }
+    header {
+        grid-column: 2/12;
+    }
+    .img-store-container {
+        position: absolute;
+        background-color: black;
+        height: 100vh;
+        width: 100%;
+        text-align: center;        
+        z-index: -1;
+        -webkit-mask-image: linear-gradient(black, transparent);
+        mask-image: linear-gradient(black, transparent);        
+    }
+    body {
+        background-color: black;        
+    }
 }
