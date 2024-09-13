@@ -1,3 +1,57 @@
 <section>
-    <h1>Home Page</h1>
+    <div class="main-container">
+        <header>
+            <div class="logo-container">
+                <img id="logo-img"a src="img/logos/logomenucom_1.png" alt="">
+                <span>Menu com</span>
+            </div>
+            <div class="nav-item-container item-hidden">
+                <button class="drop-down-button">Company<span id="triangle-icon">▾</span></button>                
+            </div>
+            <div class="login-container">
+                <button id="login-button">Login</button>
+            </div>
+            <div class="get-started-container centered item-hidden">
+                <button class="secondary-button get-started">Get started</button>
+            </div>
+        </header>
+        <section class="presentation-section">
+            <div class="presentation-container">
+                <div class="title-container">
+                    <span id="title">Get your own online store</span>
+                </div>                
+                <div class="description-container">
+                    <p>
+                        Create your own business, easily, using our web platform. 
+                        Manage your stock inventory, share each catalogue to customers, and more. 
+                    </p>
+                </div>
+                <div class="get-started-container">
+                    <button class="button-principal get-started">Get started</button>
+                </div>
+            </div>
+            <div class="image-container item-hidden">
+                <img src="img/assets/screens.png" alt="">
+            </div>                    
+        </section>        
+        <div class="img-store-container">
+            <img src="img/assets/renderStore.jpeg" alt="">
+        </div>        
+    </div>    
+    <section class="info-extra-container">
+            <div class="info-extra ">
+                <a href="#" class="info-link">About our service</a>                
+            </div>
+            <div class="info-extra">
+                <a href="#" class="info-link">Read terms and conditions</a>                
+            </div>
+            <div class="info-extra">
+                <a href="#" class="info-link">Developer contacts</a>                
+            </div>
+    </section>    
+    <script src="js/script.js"></script>
 </section>
+
+<style>
+    
+</style>
