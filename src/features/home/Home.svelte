@@ -1,3 +1,7 @@
+<script>
+import ImageBanner from "";
+</script>
+
 <section>
     <div class="main-container">
         <header>
