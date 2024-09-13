@@ -1,12 +1,13 @@
 <script>
-import ImageBanner from "";
+import ImageBanner from "img/assets/renderStore.jpeg";
+import ScreensImage from "img/assets/screens.png";
 </script>
 
 <section>
     <div class="main-container">
         <header>
             <div class="logo-container">
-                <img id="logo-img"a src="img/logos/logomenucom_1.png" alt="">
+                <img id="logo-img" src="img/logos/logomenucom_1.png" alt="">
                 <span>Menu com</span>
             </div>
             <div class="nav-item-container item-hidden">
@@ -35,11 +36,11 @@ import ImageBanner from "";
                 </div>
             </div>
             <div class="image-container item-hidden">
-                <img src="img/assets/screens.png" alt="">
+                <img src="{ScreensImage}" alt="">
             </div>                    
         </section>        
         <div class="img-store-container">
-            <img src="img/assets/renderStore.jpeg" alt="">
+            <img src="{ImageBanner}" alt="">
         </div>        
     </div>    
     <section class="info-extra-container">
