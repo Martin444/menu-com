@@ -45,13 +45,13 @@ import ScreensImage from "../../../static/img/assets/screens.png";
     </div>    
     <section class="info-extra-container">
             <div class="info-extra ">
-                <a href="#" class="info-link">About our service</a>                
+                <a href="www.google.com" class="info-link">About our service</a>                
             </div>
             <div class="info-extra">
-                <a href="#" class="info-link">Read terms and conditions</a>                
+                <a href="www.google.com" class="info-link">Read terms and conditions</a>                
             </div>
             <div class="info-extra">
-                <a href="#" class="info-link">Developer contacts</a>                
+                <a href="www.google.com" class="info-link">Developer contacts</a>                
             </div>
     </section>    
     <script src="js/script.js"></script>
@@ -241,9 +241,7 @@ button {
     font-weight: bold;
     font-size: 68px;    
 } 
-.margin-p {    
-    margin-bottom: 42px;
-}
+
 /*Secundary image*/
 .image-container {    
     grid-column: 5/9;    
@@ -322,9 +320,7 @@ button {
         -webkit-mask-image: linear-gradient(black, transparent);
         mask-image: linear-gradient(black, transparent);        
     }
-    body {
-        background-color: black;        
-    }
+
     .item-hidden {
         display: none;
     } 
