@@ -1,6 +1,6 @@
 <script>
-import ImageBanner from "img/assets/renderStore.jpeg";
-import ScreensImage from "img/assets/screens.png";
+import ImageBanner from "../../../static/img/assets/renderStore.jpeg";
+import ScreensImage from "../../../static/img/assets/screens.png";
 </script>
 
 <section>
@@ -68,6 +68,8 @@ import ScreensImage from "img/assets/screens.png";
     --text-white: #f1f1f1;
     --buttom-fill-alt: rgba(206,220,254, 0.42) 
 }
+
+
 /*Update font*/
 @font-face {
     font-family: 'Sansation';
