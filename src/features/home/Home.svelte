@@ -24,7 +24,7 @@ import ScreensImage from "../../../static/img/assets/screens.png";
                 <button class="drop-down-button">Company<span id="triangle-icon">▾</span></button>                
             </div>
             <div class="login-container">
-                <button id="login-button" on:click={gotoRegister}>Login</button>
+                <button id="login-button" on:click={gotoLogin}>Login</button>
             </div>
             <div class="get-started-container centered item-hidden">
                 <button class="secondary-button get-started">Get started</button>
@@ -42,13 +42,13 @@ import ScreensImage from "../../../static/img/assets/screens.png";
                     </p>
                 </div>
                 <div class="get-started-container">
-                    <button class="button-principal get-started" on:click={gotoLogin}>Get started</button>
+                    <button class="button-principal get-started" on:click={gotoRegister}>Get started</button>
                 </div>
             </div>
             <div class="image-container item-hidden">
                 <img src="{ScreensImage}" alt="">
             </div>                    
-        </section>        
+        </section>
         <div class="img-store-container">
             <img src="{ImageBanner}" alt="">
         </div>        
