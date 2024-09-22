@@ -1,6 +1,16 @@
 <script>
 import ImageBanner from "../../../static/img/assets/renderStore.jpeg";
 import ScreensImage from "../../../static/img/assets/screens.png";
+    import Footer from "./components/Footer.svelte";
+
+    function gotoLogin() {  
+        window.location.href = 'https://menucom-dashboard.netlify.app/#/login';
+    }
+
+    function gotoRegister() {  
+        window.location.href = 'https://menucom-dashboard.netlify.app/#/registrate';
+    }
+
 </script>
 
 <section>
@@ -14,7 +24,7 @@ import ScreensImage from "../../../static/img/assets/screens.png";
                 <button class="drop-down-button">Company<span id="triangle-icon">▾</span></button>                
             </div>
             <div class="login-container">
-                <button id="login-button">Login</button>
+                <button id="login-button" on:click={gotoRegister}>Login</button>
             </div>
             <div class="get-started-container centered item-hidden">
                 <button class="secondary-button get-started">Get started</button>
@@ -32,7 +42,7 @@ import ScreensImage from "../../../static/img/assets/screens.png";
                     </p>
                 </div>
                 <div class="get-started-container">
-                    <button class="button-principal get-started">Get started</button>
+                    <button class="button-principal get-started" on:click={gotoLogin}>Get started</button>
                 </div>
             </div>
             <div class="image-container item-hidden">
@@ -43,18 +53,7 @@ import ScreensImage from "../../../static/img/assets/screens.png";
             <img src="{ImageBanner}" alt="">
         </div>        
     </div>    
-    <section class="info-extra-container">
-            <div class="info-extra ">
-                <a href="www.google.com" class="info-link">About our service</a>                
-            </div>
-            <div class="info-extra">
-                <a href="www.google.com" class="info-link">Read terms and conditions</a>                
-            </div>
-            <div class="info-extra">
-                <a href="www.google.com" class="info-link">Developer contacts</a>                
-            </div>
-    </section>    
-    <script src="js/script.js"></script>
+    <Footer/>
 </section>
 
 <style>
@@ -230,16 +229,17 @@ button {
     font-family: "Sansation-light";
     font-weight: light;
     font-size: 20px;
-
+    color: black;
 }
 .title-container{
     margin-bottom: 42px;
-
+    
 }
 #title {
     font-family: "Sansation-bold";
     font-weight: bold;
     font-size: 68px;    
+    color: black;
 } 
 
 /*Secundary image*/
@@ -253,28 +253,7 @@ button {
 .image-container img {
     width: 100%;
 }
-/*extra info section*/
-.info-extra-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    background-color: #000;
-    font-family: "sansation";
-    min-height: 50px;
-}
-.info-extra {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-}
-.info-extra a{
-    color: var(--text-white);
-    text-decoration: none;
-}
-.info-link:hover {
-    text-decoration: underline;
-}
+
 
 
 @media screen and (max-width: 768px) {
@@ -317,18 +296,14 @@ button {
         width: 100%;
         text-align: center;        
         z-index: -1;
-        -webkit-mask-image: linear-gradient(black, transparent);
-        mask-image: linear-gradient(black, transparent);        
+        -webkit-mask-image: linear-gradient(rgb(29, 155, 35), transparent);
+        mask-image: linear-gradient(rgb(29, 155, 35), transparent);    
     }
 
     .item-hidden {
         display: none;
     } 
-    .info-extra-container, .info-extra {
-        display: block;
-        height: 2rem;
-        padding-left: 6.3vw;
-    }
+
 }
 @media screen and (max-height: 768px){    
     .main-container{
@@ -342,9 +317,7 @@ button {
     .img-store-container img{
         height: 100%;
     }
-    .info-extra-container{
-        bottom: 0;
-    }
+
     .img-store-container {
         height: 800px;
     }    
