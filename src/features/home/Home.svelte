@@ -1,7 +1,9 @@
 <script>
 import ImageBanner from "../../../static/img/assets/renderStore.jpeg";
 import ScreensImage from "../../../static/img/assets/screens.png";
-    import Footer from "./components/Footer.svelte";
+    import ButtonPrimary from "./components/ButtonPrimary.svelte";
+    import ButtonSecundary from "./components/ButtonSecundary.svelte";
+    import Footer from "./sections/Footer.svelte";
 
     function gotoLogin() {  
         window.location.href = 'https://menucom-dashboard.netlify.app/#/login';
@@ -15,6 +17,7 @@ import ScreensImage from "../../../static/img/assets/screens.png";
 
 <section>
     <div class="main-container">
+        <!-- //TODO: Separar el Header  -->
         <header>
             <div class="logo-container">
                 <img id="logo-img" src="img/logos/logomenucom_1.png" alt="">
@@ -27,11 +30,15 @@ import ScreensImage from "../../../static/img/assets/screens.png";
                 <button id="login-button" on:click={gotoLogin}>Login</button>
             </div>
             <div class="get-started-container centered item-hidden">
-                <button class="secondary-button get-started">Get started</button>
+                <ButtonSecundary titleButton='Registrate' onClick={gotoRegister}/>
+                
             </div>
         </header>
+        <!-- //TODO: Separar esta seccion (BodyHomeLayout) para que reciba como parametros
+        // Recibe la image  -->
         <section class="presentation-section">
             <div class="presentation-container">
+                <!-- //Body -->
                 <div class="title-container">
                     <span id="title">Get your own online store</span>
                 </div>                
@@ -42,7 +49,7 @@ import ScreensImage from "../../../static/img/assets/screens.png";
                     </p>
                 </div>
                 <div class="get-started-container">
-                    <button class="button-principal get-started" on:click={gotoRegister}>Get started</button>
+                   <ButtonPrimary titleButton='Get started' onClick={gotoRegister}/>
                 </div>
             </div>
             <div class="image-container item-hidden">
@@ -160,32 +167,7 @@ header {
     grid-column:7/ span 8;    
     width: 100%;
 }
-/*Secondary button style*/
-.secondary-button {
-    background-color: var(--secondary-color);        
-    color: var(--principal-color);
-    font-family: "Sansation-bold";
-    border-radius: 8px;    
-    font-size: 16px;
-    height: 41px ;
-    width: 152px;
-    border: none;
-    /*height: 48px;
-    line-height: 48px;    */
-    text-align: center;        
-    text-decoration: none;
-}
-/*Principal button*/
-.button-principal {
-    font-family: "Sansation-bold";
-    font-size: 20px;
-    color: var(--text-white);
-    height: 48px;
-    width: 195px;
-    border-radius: 8px;
-    border: none;
-    background-color: var(--principal-color);    
-}
+
 button {
     cursor: pointer;
 }
@@ -289,7 +271,7 @@ button {
     header {
         grid-column: 2/12;
     }
-    .img-store-container {
+    :global(.img-store-container) {
         position: absolute;
         background-color: black;
         height: 100vh;
