@@ -49,7 +49,7 @@ import ScreensImage from "../../../static/img/assets/screens.png";
                     </p>
                 </div>
                 <div class="get-started-container">
-                   <ButtonPrimary titleButton='Comienza ahora' onClick={gotoRegister}/>
+                   <ButtonPrimary titleButton='Comienza ahora' onClick={gotoLogin}/>
                 </div>
             </div>
             <div class="image-container item-hidden">
