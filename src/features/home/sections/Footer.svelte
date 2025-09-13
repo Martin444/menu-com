@@ -1,12 +1,12 @@
 <section class="info-extra-container">
     <div class="info-extra ">
-        <a href="www.google.com" class="info-link">About our service</a>                
+        <a href="/about-service" class="info-link">Sobre el Servicio</a>                
     </div>
     <div class="info-extra">
-        <a href="www.google.com" class="info-link">Read terms and conditions</a>                
+        <a href="/tyc" class="info-link">Términos y Condiciones</a>                
     </div>
     <div class="info-extra">
-        <a href="www.google.com" class="info-link">Developer contacts</a>                
+    <a href="/dev-contact" class="info-link">Contacta al desarrollador</a>                
     </div>
 </section>   
 
