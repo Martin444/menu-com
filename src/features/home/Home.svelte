@@ -27,7 +27,7 @@ import ScreensImage from "../../../static/img/assets/screens.png";
                 <button class="drop-down-button">Company<span id="triangle-icon">▾</span></button>                
             </div>
             <div class="login-container">
-                <button id="login-button" on:click={gotoLogin}>Login</button>
+                <button id="login-button" on:click={gotoLogin}>Iniciá sesión</button>
             </div>
             <div class="get-started-container centered item-hidden">
                 <ButtonSecundary titleButton='Registrate' onClick={gotoRegister}/>
@@ -40,16 +40,16 @@ import ScreensImage from "../../../static/img/assets/screens.png";
             <div class="presentation-container">
                 <!-- //Body -->
                 <div class="title-container">
-                    <span id="title">Get your own online store</span>
+                    <span id="title">Crea tu propia tienda online</span>
                 </div>                
                 <div class="description-container">
-                    <p>
-                        Create your own business, easily, using our web platform. 
-                        Manage your stock inventory, share each catalogue to customers, and more. 
+                   <p>
+                        Creá tu propio negocio de forma simple usando nuestra plataforma web.  
+                        Gestioná tu inventario, compartí catálogos con tus clientes ¡y mucho más!
                     </p>
                 </div>
                 <div class="get-started-container">
-                   <ButtonPrimary titleButton='Get started' onClick={gotoRegister}/>
+                   <ButtonPrimary titleButton='Comienza ahora' onClick={gotoRegister}/>
                 </div>
             </div>
             <div class="image-container item-hidden">
