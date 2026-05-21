@@ -1,0 +1,184 @@
+{
+  "projectName": "menu-com",
+  "version": "0.0.1",
+  "techStack": {
+    "language": "JavaScript (TypeScript tooling available)",
+    "framework": "SvelteKit 2",
+    "svelteVersion": "4.2.7",
+    "buildTool": "Vite 5",
+    "packageManager": "npm (package-lock.json)",
+    "css": "Scoped component styles (no preprocessor)",
+    "routing": "SvelteKit file-based routes",
+    "deployment": "Netlify via netlify.toml (adapter-auto in svelte.config.js)",
+    "fonts": "Custom Sansation via static/fonts"
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch"
+  },
+  "dependencies": {
+    "runtime": {
+      "svelte-routing": "^2.13.0"
+    },
+    "dev": {
+      "@fontsource/fira-mono": "^5.0.0",
+      "@neoconfetti/svelte": "^2.0.0",
+      "@sveltejs/adapter-auto": "^3.0.0",
+      "@sveltejs/kit": "^2.0.0",
+      "@sveltejs/vite-plugin-svelte": "^3.0.0",
+      "svelte": "^4.2.7",
+      "svelte-check": "^4.0.0",
+      "typescript": "^5.0.0",
+      "vite": "^5.0.3"
+    }
+  },
+  "config": {
+    "svelte.config.js": {
+      "adapter": "@sveltejs/adapter-auto"
+    },
+    "vite.config.js": {
+      "plugins": ["@sveltejs/kit"],
+      "server.fs.allow": ["."]
+    },
+    "netlify.toml": {
+      "build.command": "npm run build",
+      "build.publish": "dist"
+    },
+    "app.html": {
+      "preload": "data on hover",
+      "meta": ["charset utf-8", "viewport"]
+    }
+  },
+  "source": {
+    "root": "src",
+    "routes": [
+      {
+        "path": "/",
+        "file": "src/routes/+page.svelte",
+        "uses": ["src/features/home/Home.svelte"]
+      },
+      {
+        "path": "/contact",
+        "file": "src/routes/contact/+page.svelte",
+        "status": "static page",
+        "contentSummary": "H1 'Esto es contactos'"
+      },
+      {
+        "path": "/about",
+        "file": "src/routes/about/",
+        "status": "empty directory"
+      },
+      {
+        "path": "/sverdle/how-to-play",
+        "file": "src/routes/sverdle/how-to-play/",
+        "status": "empty directory"
+      }
+    ],
+    "features": [
+      "Landing page home con hero, CTA y navegación a login/registro externo",
+      "Footer con enlaces informativos",
+      "Componentes de botón (primario y secundario) reutilizables"
+    ],
+    "components": [
+      {
+        "name": "Home.svelte",
+        "path": "src/features/home/Home.svelte",
+        "children": ["ButtonPrimary", "ButtonSecundary", "Footer"],
+        "assets": [
+          "static/img/assets/screens.png",
+          "static/img/assets/renderStore.jpeg",
+          "static/img/logos/logomenucom_1.png"
+        ],
+        "actions": [
+          "gotoLogin -> window.location.href a https://menucom-dashboard.netlify.app/#/login",
+          "gotoRegister -> window.location.href a https://menucom-dashboard.netlify.app/#/registrate"
+        ],
+        "styles": "Grid responsive, fuentes Sansation, variables CSS en componente"
+      },
+      {
+        "name": "ButtonPrimary.svelte",
+        "path": "src/features/home/components/ButtonPrimary.svelte",
+        "props": ["titleButton", "onClick"],
+        "styles": "Botón primario con color principal"
+      },
+      {
+        "name": "ButtonSecundary.svelte",
+        "path": "src/features/home/components/ButtonSecundary.svelte",
+        "props": ["titleButton", "onClick"],
+        "styles": "Botón secundario con color secundario"
+      },
+      {
+        "name": "Footer.svelte",
+        "path": "src/features/home/sections/Footer.svelte",
+        "links": [
+          "About our service -> www.google.com",
+          "Read terms and conditions -> www.google.com",
+          "Developer contacts -> www.google.com"
+        ]
+      }
+    ],
+    "staticAssets": [
+      {
+        "dir": "static/img/assets",
+        "files": ["renderStore.jpeg", "screens.png"]
+      },
+      {
+        "dir": "static/img/logos",
+        "files": ["logomenucom 1.png", "logomenucom_1.png"]
+      },
+      {
+        "dir": "static/fonts",
+        "files": [
+          "Sansation_1.31_ReadMe.txt",
+          "Sansation_Bold_Italic.ttf",
+          "Sansation_Bold.ttf",
+          "Sansation_Italic.ttf",
+          "Sansation_Light_Italic.ttf",
+          "Sansation_Light.ttf",
+          "Sansation_plate.jpg",
+          "Sansation_Regular.ttf"
+        ]
+      },
+      {
+        "files": ["static/robots.txt", "static/favicon.png"]
+      }
+    ]
+  },
+  "findings": {
+    "strengths": [
+      "Estructura SvelteKit limpia y convencional",
+      "Separación de componentes (Home, Buttons, Footer)",
+      "Estilos responsivos y uso de variables CSS"
+    ],
+    "risks": [
+      "Posible desalineación de despliegue en Netlify: publish=dist con SvelteKit y adapter-auto. Para Netlify suele recomendarse @sveltejs/adapter-netlify",
+      "Rutas vacías (about, sverdle/how-to-play) que podrían resultar en 404 o confusión",
+      "Dependencia svelte-routing instalada pero no utilizada",
+      "Enlaces en Footer sin protocolo (www.google.com) podrían resolverse como rutas relativas",
+      "Uso mixto de assets estáticos: import desde 'static' vía rutas relativas y referencias relativas 'img/...'. Recomendado usar rutas absolutas '/img/...'."
+    ],
+    "todos": [
+      "Extraer Header a un componente dedicado (mencionado en TODO)",
+      "Unificar manejo de assets estáticos con rutas absolutas desde /",
+      "Completar o eliminar directorios de rutas vacías",
+      "Considerar usar @sveltejs/adapter-netlify y ajustar netlify.toml si el destino de despliegue es Netlify",
+      "Revisar necesidad real de svelte-routing o eliminarla"
+    ]
+  },
+  "testingNotes": {
+    "type": "frontend",
+    "localPort": 5173,
+    "howToRun": ["npm install", "npm run dev"],
+    "coverageTargets": [
+      "Home renderiza y muestra título y descripción",
+      "CTA 'Comienza ahora' navega a registro (window.location.href)",
+      "Botón 'Iniciá sesión' navega a login",
+      "Imágenes se cargan correctamente",
+      "Footer muestra enlaces",
+      "Layout responde a viewport < 768px"
+    ]
+  }
+}

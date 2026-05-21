@@ -1,3 +1,17 @@
 [build]
   command = "npm run build"
-  publish = "dist"
+  # The @sveltejs/adapter-netlify generates the correct output structure.
+  # Do not override publish directory — let the adapter handle it.
+
+[build.environment]
+  NODE_VERSION = "18.13.0"
+
+# Required environment variables (set in Netlify dashboard → Site settings → Environment variables):
+# VITE_API_URL=https://menucom-api-production.up.railway.app
+#
+# For branch deploys or preview deploys pointing to staging API:
+# [context.deploy-preview.environment]
+#   VITE_API_URL = "https://menucom-api-staging.up.railway.app"
+#
+# [context.branch-deploy.environment]
+#   VITE_API_URL = "https://menucom-api-staging.up.railway.app"
