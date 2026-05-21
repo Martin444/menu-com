@@ -1,8 +1,8 @@
 [build]
   command = "npm run build"
-  # Publish root is required here to override any "dist" value set in the
-  # Netlify Dashboard UI. @sveltejs/adapter-netlify handles the real output.
-  publish = "."
+  # The adapter writes to .svelte-kit/netlify. We override the UI "dist"
+  # setting so Netlify publishes from the adapter's actual output directory.
+  publish = ".svelte-kit/netlify"
 
 [build.environment]
   NODE_VERSION = "18.13.0"
