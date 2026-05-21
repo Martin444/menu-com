@@ -7,10 +7,10 @@ function __memo(fn) {
 return {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set(["favicon.png","fonts/Sansation_1.31_ReadMe.txt","fonts/Sansation_Bold.ttf","fonts/Sansation_Bold_Italic.ttf","fonts/Sansation_Italic.ttf","fonts/Sansation_Light.ttf","fonts/Sansation_Light_Italic.ttf","fonts/Sansation_plate.jpg","fonts/Sansation_Regular.ttf","img/assets/renderStore.jpeg","img/assets/screens.png","img/logos/logomenucom 1.png","img/logos/logomenucom_1.png","robots.txt"]),
-	mimeTypes: {".png":"image/png",".txt":"text/plain",".ttf":"font/ttf",".jpg":"image/jpeg",".jpeg":"image/jpeg"},
+	assets: new Set(["favicon.png","fonts/Sansation_1.31_ReadMe.txt","fonts/Sansation_Bold.ttf","fonts/Sansation_Bold_Italic.ttf","fonts/Sansation_Italic.ttf","fonts/Sansation_Light.ttf","fonts/Sansation_Light_Italic.ttf","fonts/Sansation_plate.jpg","fonts/Sansation_Regular.ttf","img/assets/renderStore.jpeg","img/assets/screens.png","img/logos/logomenucom 1.png","img/logos/logomenucom_1.png","robots.txt","sitemap.xml"]),
+	mimeTypes: {".png":"image/png",".txt":"text/plain",".ttf":"font/ttf",".jpg":"image/jpeg",".jpeg":"image/jpeg",".xml":"text/xml"},
 	_: {
-		client: {start:"_app/immutable/entry/start.nYeCAmal.js",app:"_app/immutable/entry/app.h2v_qf7l.js",imports:["_app/immutable/entry/start.nYeCAmal.js","_app/immutable/chunks/BLwg4qxf.js","_app/immutable/chunks/0NmH6DSK.js","_app/immutable/entry/app.h2v_qf7l.js","_app/immutable/chunks/0NmH6DSK.js","_app/immutable/chunks/DE9nRwEa.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"_app/immutable/entry/start.BqhIVs37.js",app:"_app/immutable/entry/app.DKTq-y-7.js",imports:["_app/immutable/entry/start.BqhIVs37.js","_app/immutable/chunks/cPJey-n_.js","_app/immutable/chunks/DI0ahX_d.js","_app/immutable/entry/app.DKTq-y-7.js","_app/immutable/chunks/DI0ahX_d.js","_app/immutable/chunks/3fPJ5UXn.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -18,7 +18,8 @@ return {
 			__memo(() => import('./nodes/3.js')),
 			__memo(() => import('./nodes/4.js')),
 			__memo(() => import('./nodes/5.js')),
-			__memo(() => import('./nodes/6.js'))
+			__memo(() => import('./nodes/6.js')),
+			__memo(() => import('./nodes/7.js'))
 		],
 		remotes: {
 			
@@ -53,10 +54,17 @@ return {
 				endpoint: null
 			},
 			{
+				id: "/merchant/[slug]",
+				pattern: /^\/merchant\/([^/]+?)\/?$/,
+				params: [{"name":"slug","optional":false,"rest":false,"chained":false}],
+				page: { layouts: [0,], errors: [1,], leaf: 6 },
+				endpoint: null
+			},
+			{
 				id: "/tyc",
 				pattern: /^\/tyc\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 6 },
+				page: { layouts: [0,], errors: [1,], leaf: 7 },
 				endpoint: null
 			}
 		],

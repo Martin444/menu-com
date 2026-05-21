@@ -1,49 +1,10 @@
-import { g as getContext, c as create_ssr_component, d as subscribe, e as escape } from "../../chunks/ssr.js";
-import "@sveltejs/kit/internal";
-import "../../chunks/exports.js";
-import "../../chunks/utils.js";
-import "@sveltejs/kit/internal/server";
-import { o as onMount } from "../../chunks/ssr2.js";
-const is_legacy = onMount.toString().includes("$$") || /function \w+\(\) \{\}/.test(onMount.toString());
-const placeholder_url = "a:";
-if (is_legacy) {
-  ({
-    data: {},
-    form: null,
-    error: null,
-    params: {},
-    route: { id: null },
-    state: {},
-    status: -1,
-    url: new URL(placeholder_url)
-  });
-}
-const getStores = () => {
-  const stores = getContext("__svelte__");
-  return {
-    /** @type {typeof page} */
-    page: {
-      subscribe: stores.page.subscribe
-    },
-    /** @type {typeof navigating} */
-    navigating: {
-      subscribe: stores.navigating.subscribe
-    },
-    /** @type {typeof updated} */
-    updated: stores.updated
-  };
-};
-const page = {
-  subscribe(fn) {
-    const store = getStores().page;
-    return store.subscribe(fn);
-  }
-};
+import { c as create_ssr_component, d as subscribe, e as escape } from "../../chunks/ssr.js";
+import { p as page } from "../../chunks/stores.js";
 const css = {
   code: ".error-page.svelte-1djzmiv{display:flex;align-items:center;justify-content:center;min-height:100dvh;padding:var(--space-lg);text-align:center;font-family:var(--font-body)}.error-page__content.svelte-1djzmiv{max-width:500px}.error-page__code.svelte-1djzmiv{font-family:var(--font-bold);font-size:clamp(4rem, 10vw, 7rem);color:var(--color-primary);line-height:1;margin-bottom:var(--space-md)}.error-page__message.svelte-1djzmiv{font-size:1.25rem;color:var(--color-text);margin-bottom:var(--space-lg)}.error-page__link.svelte-1djzmiv{display:inline-block;padding:var(--space-sm) var(--space-lg);background-color:var(--color-primary);color:var(--color-text-inverse);font-family:var(--font-bold);border-radius:var(--radius-md);text-decoration:none;transition:opacity 0.2s ease}.error-page__link.svelte-1djzmiv:hover{opacity:0.9}",
   map: '{"version":3,"file":"+error.svelte","sources":["+error.svelte"],"sourcesContent":["<script>\\n  import { page } from \\"$app/stores\\";\\n<\/script>\\n\\n<div class=\\"error-page\\">\\n  <div class=\\"error-page__content\\">\\n    <h1 class=\\"error-page__code\\">{$page.status}</h1>\\n    <p class=\\"error-page__message\\">\\n      {#if $page.status === 404}\\n        Página no encontrada.\\n      {:else}\\n        {$page.error?.message || \\"Algo salió mal.\\"}\\n      {/if}\\n    </p>\\n    <a href=\\"/\\" class=\\"error-page__link\\">Volver al inicio</a>\\n  </div>\\n</div>\\n\\n<style>\\n  .error-page {\\n    display: flex;\\n    align-items: center;\\n    justify-content: center;\\n    min-height: 100dvh;\\n    padding: var(--space-lg);\\n    text-align: center;\\n    font-family: var(--font-body);\\n  }\\n\\n  .error-page__content {\\n    max-width: 500px;\\n  }\\n\\n  .error-page__code {\\n    font-family: var(--font-bold);\\n    font-size: clamp(4rem, 10vw, 7rem);\\n    color: var(--color-primary);\\n    line-height: 1;\\n    margin-bottom: var(--space-md);\\n  }\\n\\n  .error-page__message {\\n    font-size: 1.25rem;\\n    color: var(--color-text);\\n    margin-bottom: var(--space-lg);\\n  }\\n\\n  .error-page__link {\\n    display: inline-block;\\n    padding: var(--space-sm) var(--space-lg);\\n    background-color: var(--color-primary);\\n    color: var(--color-text-inverse);\\n    font-family: var(--font-bold);\\n    border-radius: var(--radius-md);\\n    text-decoration: none;\\n    transition: opacity 0.2s ease;\\n  }\\n\\n  .error-page__link:hover {\\n    opacity: 0.9;\\n  }\\n</style>\\n"],"names":[],"mappings":"AAmBE,0BAAY,CACV,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,MAAM,CACnB,eAAe,CAAE,MAAM,CACvB,UAAU,CAAE,MAAM,CAClB,OAAO,CAAE,IAAI,UAAU,CAAC,CACxB,UAAU,CAAE,MAAM,CAClB,WAAW,CAAE,IAAI,WAAW,CAC9B,CAEA,mCAAqB,CACnB,SAAS,CAAE,KACb,CAEA,gCAAkB,CAChB,WAAW,CAAE,IAAI,WAAW,CAAC,CAC7B,SAAS,CAAE,MAAM,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAClC,KAAK,CAAE,IAAI,eAAe,CAAC,CAC3B,WAAW,CAAE,CAAC,CACd,aAAa,CAAE,IAAI,UAAU,CAC/B,CAEA,mCAAqB,CACnB,SAAS,CAAE,OAAO,CAClB,KAAK,CAAE,IAAI,YAAY,CAAC,CACxB,aAAa,CAAE,IAAI,UAAU,CAC/B,CAEA,gCAAkB,CAChB,OAAO,CAAE,YAAY,CACrB,OAAO,CAAE,IAAI,UAAU,CAAC,CAAC,IAAI,UAAU,CAAC,CACxC,gBAAgB,CAAE,IAAI,eAAe,CAAC,CACtC,KAAK,CAAE,IAAI,oBAAoB,CAAC,CAChC,WAAW,CAAE,IAAI,WAAW,CAAC,CAC7B,aAAa,CAAE,IAAI,WAAW,CAAC,CAC/B,eAAe,CAAE,IAAI,CACrB,UAAU,CAAE,OAAO,CAAC,IAAI,CAAC,IAC3B,CAEA,gCAAiB,MAAO,CACtB,OAAO,CAAE,GACX"}'
 };
-const Error$1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+const Error = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $page, $$unsubscribe_page;
   $$unsubscribe_page = subscribe(page, (value) => $page = value);
   $$result.css.add(css);
@@ -51,5 +12,5 @@ const Error$1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `<div class="error-page svelte-1djzmiv"><div class="error-page__content svelte-1djzmiv"><h1 class="error-page__code svelte-1djzmiv">${escape($page.status)}</h1> <p class="error-page__message svelte-1djzmiv">${$page.status === 404 ? `Página no encontrada.` : `${escape($page.error?.message || "Algo salió mal.")}`}</p> <a href="/" class="error-page__link svelte-1djzmiv" data-svelte-h="svelte-hfaj90">Volver al inicio</a></div> </div>`;
 });
 export {
-  Error$1 as default
+  Error as default
 };
