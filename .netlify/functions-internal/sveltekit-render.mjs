@@ -12,7 +12,7 @@ return {
 	assets: new Set(["favicon.png","fonts/Sansation_1.31_ReadMe.txt","fonts/Sansation_Bold.ttf","fonts/Sansation_Bold_Italic.ttf","fonts/Sansation_Italic.ttf","fonts/Sansation_Light.ttf","fonts/Sansation_Light_Italic.ttf","fonts/Sansation_plate.jpg","fonts/Sansation_Regular.ttf","img/assets/renderStore.jpeg","img/assets/screens.png","img/logos/logomenucom 1.png","img/logos/logomenucom_1.png","robots.txt","sitemap.xml"]),
 	mimeTypes: {".png":"image/png",".txt":"text/plain",".ttf":"font/ttf",".jpg":"image/jpeg",".jpeg":"image/jpeg",".xml":"text/xml"},
 	_: {
-		client: {start:"_app/immutable/entry/start.BqhIVs37.js",app:"_app/immutable/entry/app.DKTq-y-7.js",imports:["_app/immutable/entry/start.BqhIVs37.js","_app/immutable/chunks/cPJey-n_.js","_app/immutable/chunks/DI0ahX_d.js","_app/immutable/entry/app.DKTq-y-7.js","_app/immutable/chunks/DI0ahX_d.js","_app/immutable/chunks/3fPJ5UXn.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"_app/immutable/entry/start.agztOSnQ.js",app:"_app/immutable/entry/app.CplPDcOX.js",imports:["_app/immutable/entry/start.agztOSnQ.js","_app/immutable/chunks/BEVDaYZG.js","_app/immutable/chunks/DI0ahX_d.js","_app/immutable/entry/app.CplPDcOX.js","_app/immutable/chunks/DI0ahX_d.js","_app/immutable/chunks/3fPJ5UXn.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('../server/nodes/0.js')),
 			__memo(() => import('../server/nodes/1.js')),

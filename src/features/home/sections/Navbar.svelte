@@ -42,11 +42,11 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--space-md) var(--space-lg);
-    max-width: var(--container-max);
-    margin: 0 auto;
     width: 100%;
-    position: relative;
-    z-index: 10;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-bg);
   }
 
   .navbar__brand {
