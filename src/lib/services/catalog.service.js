@@ -17,7 +17,8 @@ export async function searchPublicCatalogs(filters = {}) {
 		type: filters.type,
 		tags: filters.tags?.length ? filters.tags.join(',') : undefined,
 	});
-	return httpGet(`${API_BASE_URL}/catalogs/public/search${query}`);
+	const result = await httpGet(`${API_BASE_URL}/catalogs/public/search${query}`);
+	return result?.data || [];
 }
 
 /**
@@ -26,7 +27,8 @@ export async function searchPublicCatalogs(filters = {}) {
  * @returns {Promise<Object>}
  */
 export async function getPublicCatalogBySlug(slug) {
-	return httpGet(`${API_BASE_URL}/catalogs/public/${encodeURIComponent(slug)}`);
+	const result = await httpGet(`${API_BASE_URL}/catalogs/public/${encodeURIComponent(slug)}`);
+	return result?.data || null;
 }
 
 /**
@@ -35,5 +37,6 @@ export async function getPublicCatalogBySlug(slug) {
  * @returns {Promise<any[]>}
  */
 export async function getPublicCatalogsByOwner(ownerId) {
-	return httpGet(`${API_BASE_URL}/catalogs/public/owner/${encodeURIComponent(ownerId)}`);
+	const result = await httpGet(`${API_BASE_URL}/catalogs/public/owner/${encodeURIComponent(ownerId)}`);
+	return result?.data || [];
 }

@@ -20,7 +20,8 @@ export async function getPublicMerchants(params = {}) {
 		search: params.search,
 		sort: params.sort,
 	});
-	return httpGet(`${API_BASE_URL}/public/merchants${query}`);
+	const result = await httpGet(`${API_BASE_URL}/public/merchants${query}`);
+	return result?.data || [];
 }
 
 /**
@@ -32,7 +33,8 @@ export async function getFeaturedMerchants(params = {}) {
 	const query = buildQueryString({
 		limit: params.limit,
 	});
-	return httpGet(`${API_BASE_URL}/public/merchants/featured${query}`);
+	const result = await httpGet(`${API_BASE_URL}/public/merchants/featured${query}`);
+	return result?.data || [];
 }
 
 /**
@@ -41,7 +43,8 @@ export async function getFeaturedMerchants(params = {}) {
  * @returns {Promise<Object>}
  */
 export async function getMerchantBySlug(slug) {
-	return httpGet(`${API_BASE_URL}/public/merchants/${encodeURIComponent(slug)}`);
+	const result = await httpGet(`${API_BASE_URL}/public/merchants/${encodeURIComponent(slug)}`);
+	return result?.data || null;
 }
 
 /**
@@ -50,7 +53,8 @@ export async function getMerchantBySlug(slug) {
  * @returns {Promise<any[]>}
  */
 export async function getMerchantCatalogs(slug) {
-	return httpGet(`${API_BASE_URL}/public/merchants/${encodeURIComponent(slug)}/catalogs`);
+	const result = await httpGet(`${API_BASE_URL}/public/merchants/${encodeURIComponent(slug)}/catalogs`);
+	return result?.data || [];
 }
 
 /**
@@ -58,7 +62,8 @@ export async function getMerchantCatalogs(slug) {
  * @returns {Promise<{ data: any[] }>}
  */
 export async function getPublicCategories() {
-	return httpGet(`${API_BASE_URL}/public/categories`);
+	const result = await httpGet(`${API_BASE_URL}/public/categories`);
+	return result?.data || [];
 }
 
 /**
@@ -66,7 +71,8 @@ export async function getPublicCategories() {
  * @returns {Promise<Object>}
  */
 export async function getPublicStats() {
-	return httpGet(`${API_BASE_URL}/public/stats`);
+	const result = await httpGet(`${API_BASE_URL}/public/stats`);
+	return result?.data || null;
 }
 
 /**
@@ -81,7 +87,8 @@ export async function searchPublic(params = {}) {
 		page: params.page,
 		limit: params.limit,
 	});
-	return httpGet(`${API_BASE_URL}/public/search${query}`);
+	const result = await httpGet(`${API_BASE_URL}/public/search${query}`);
+	return result?.data || [];
 }
 
 /**
@@ -94,5 +101,6 @@ export async function getTrending(params = {}) {
 		period: params.period,
 		limit: params.limit,
 	});
-	return httpGet(`${API_BASE_URL}/public/trending${query}`);
+	const result = await httpGet(`${API_BASE_URL}/public/trending${query}`);
+	return result?.data || [];
 }

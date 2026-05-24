@@ -4,7 +4,7 @@
   const coverUrl = merchant.coverImageUrl || merchant.photoURL || '/img/assets/renderStore.jpeg';
   const avatarUrl = merchant.photoURL || '';
   const businessName = merchant.businessName || 'Negocio';
-  const description = merchant.description || '';
+  const description = merchant.description || merchant.catalogTypes?.join(', ') || '';
   const catalogCount = merchant.catalogCount || 0;
   const totalItems = merchant.totalItems || 0;
   const tags = merchant.tags || [];
