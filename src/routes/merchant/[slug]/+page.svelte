@@ -3,6 +3,13 @@
   import { page } from '$app/stores';
   import { getPublicCatalogsByOwner } from '$lib/services/catalog.service.js';
   import CatalogCard from '../../../features/home/components/CatalogCard.svelte';
+  import Button from '../../../features/home/components/Button.svelte';
+
+  const MERCHANT_STORE_URL = import.meta.env.VITE_MERCHANT_STORE_URL || 'https://menu-comerce.netlify.app';
+
+  function goToStore() {
+    window.location.href = `${MERCHANT_STORE_URL}/${ownerId}`;
+  }
 
   /** @type {any[]} */
   let catalogs = [];
@@ -70,6 +77,9 @@
           <div class="merchant-page__stats">
             <span class="merchant-page__stat">{totalCatalogs} catálogos</span>
             <span class="merchant-page__stat">{totalItems} productos</span>
+          </div>
+          <div class="merchant-page__actions">
+            <Button label="Visitar tienda" variant="primary" onClick={goToStore} />
           </div>
         </div>
       </div>
@@ -195,6 +205,10 @@
     .merchant-page__grid {
       grid-template-columns: repeat(3, 1fr);
     }
+  }
+
+  .merchant-page__actions {
+    margin-top: var(--space-lg);
   }
 
   .merchant-page__state {
