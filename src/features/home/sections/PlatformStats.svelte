@@ -15,6 +15,8 @@
   let visible = false;
   /** @type {HTMLElement} */
   let sectionEl;
+  /** @type {IntersectionObserver} */
+  let observer;
 
   const merchantsCount = tweened(0, { duration: 1200, easing: cubicOut });
   const catalogsCount = tweened(0, { duration: 1200, easing: cubicOut });
@@ -22,7 +24,7 @@
   const ordersCount = tweened(0, { duration: 1200, easing: cubicOut });
 
   onMount(() => {
-    const observer = new IntersectionObserver(
+    observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && stats && !visible) {
           visible = true;
@@ -36,8 +38,6 @@
       { threshold: 0.3 }
     );
 
-    if (sectionEl) observer.observe(sectionEl);
-
     (async () => {
       try {
         stats = await getPublicStats();
@@ -49,8 +49,12 @@
       event('section_view', { section: 'platform_stats' });
     })();
 
-    return () => observer.disconnect();
+    return () => observer?.disconnect();
   });
+
+  $: if (sectionEl && stats && !visible) {
+    observer?.observe(sectionEl);
+  }
 
   /** @param {number} num */
   function formatNumber(num) {

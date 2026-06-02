@@ -15,8 +15,6 @@
   <div class="home__content">
     <HeroSection onGetStarted={gotoRegister} />
 
-    <PlatformStats />
-
     <FeaturedMerchants title="Comerciantes Destacados" limit={6} />
 
     <PopularCatalogs title="Catálogos Populares" />
