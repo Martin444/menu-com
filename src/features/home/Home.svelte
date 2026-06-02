@@ -4,7 +4,7 @@
   import PopularCatalogs from "./sections/PopularCatalogs.svelte";
   import OwnerCatalogs from "./sections/OwnerCatalogs.svelte";
   import FeaturedMerchants from "./sections/FeaturedMerchants.svelte";
-  // import PlatformStats from "./sections/PlatformStats.svelte";
+  import PlatformStats from "./sections/PlatformStats.svelte";
 
   function gotoRegister() {
     window.location.href = "https://menucom-dashboard.netlify.app/#/registrate";
@@ -15,7 +15,7 @@
   <div class="home__content">
     <HeroSection onGetStarted={gotoRegister} />
 
-    <!-- <PlatformStats /> -->
+    <PlatformStats />
 
     <FeaturedMerchants title="Comerciantes Destacados" limit={6} />
 

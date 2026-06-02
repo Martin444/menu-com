@@ -1,4 +1,4 @@
-import { c as create_ssr_component, d as subscribe, e as escape, b as add_attribute } from "./ssr.js";
+import { c as create_ssr_component, f as subscribe, e as escape, d as add_attribute } from "./ssr.js";
 import { p as page } from "./stores.js";
 const Seo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let canonical;

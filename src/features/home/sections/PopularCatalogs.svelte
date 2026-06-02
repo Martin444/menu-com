@@ -1,6 +1,9 @@
 <script>
   import { onMount } from 'svelte';
+  import { fade } from 'svelte/transition';
   import { searchPublicCatalogs } from '$lib/services/catalog.service.js';
+  import { scrollReveal } from '$lib/actions/scrollReveal.js';
+  import { event } from '$lib/analytics/gtag.js';
   import CatalogCard from '../components/CatalogCard.svelte';
 
   export let title = 'Catálogos Populares';
@@ -18,30 +21,40 @@
       catalogs = await searchPublicCatalogs({ type, tags });
     } catch (err) {
       error = err instanceof Error ? err.message : 'Unknown error';
+      event('section_view', { section: 'popular_catalogs' });
     } finally {
       loading = false;
     }
   });
 </script>
 
-<section class="popular-catalogs">
+<section class="popular-catalogs" use:scrollReveal>
   <div class="popular-catalogs__container">
     <h2 class="popular-catalogs__title">{title}</h2>
 
     {#if loading}
-      <div class="popular-catalogs__state">
-        <p>Cargando catálogos...</p>
+      <div class="popular-catalogs__grid">
+        {#each Array(6) as _, i}
+          <div class="skeleton-card">
+            <div class="skeleton skeleton-card__image"></div>
+            <div class="skeleton-card__body">
+              <div class="skeleton skeleton-card__title"></div>
+              <div class="skeleton skeleton-card__text"></div>
+              <div class="skeleton skeleton-card__text skeleton-card__text--short"></div>
+            </div>
+          </div>
+        {/each}
       </div>
     {:else if error}
-      <div class="popular-catalogs__state popular-catalogs__state--error">
+      <div class="popular-catalogs__state" in:fade={{ duration: 300 }}>
         <p>No pudimos cargar los catálogos.</p>
       </div>
     {:else if catalogs.length === 0}
-      <div class="popular-catalogs__state">
+      <div class="popular-catalogs__state" in:fade={{ duration: 300 }}>
         <p>No hay catálogos disponibles por el momento.</p>
       </div>
     {:else}
-      <div class="popular-catalogs__grid">
+      <div class="popular-catalogs__grid" in:fade={{ duration: 400 }}>
         {#each catalogs as catalog (catalog.id)}
           <CatalogCard {catalog} />
         {/each}
@@ -94,8 +107,39 @@
     opacity: 0.7;
   }
 
-  .popular-catalogs__state--error {
-    color: #e74c3c;
-    opacity: 1;
+  /* Skeleton cards */
+  .skeleton-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .skeleton-card__image {
+    aspect-ratio: 16 / 10;
+    border-radius: 0;
+  }
+
+  .skeleton-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-md);
+  }
+
+  .skeleton-card__title {
+    height: 1.2rem;
+    width: 70%;
+    border-radius: var(--radius-sm);
+  }
+
+  .skeleton-card__text {
+    height: 0.9rem;
+    width: 100%;
+    border-radius: var(--radius-sm);
+  }
+
+  .skeleton-card__text--short {
+    width: 50%;
   }
 </style>

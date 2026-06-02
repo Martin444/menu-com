@@ -1,24 +1,56 @@
 <script>
+  import { fly } from 'svelte/transition';
+  import { quintOut } from 'svelte/easing';
+  import { event } from '$lib/analytics/gtag.js';
   import Button from "../components/Button.svelte";
 
   export let onGetStarted = () => {};
+
+  function handleGetStarted() {
+    event('cta_click', { type: 'hero_cta' });
+    onGetStarted();
+  }
 </script>
 
 <section class="hero">
   <div class="hero__content">
-    <h1 class="hero__title">Creá tu tienda online en minutos</h1>
-    <p class="hero__description">
-      Creá tu propio negocio fácilmente con nuestra plataforma web.
-      Gestioná tu inventario, compartí catálogos con clientes y mucho más.
-    </p>
-    <div class="hero__cta">
-      <Button variant="primary" label="Empezar ahora" onClick={onGetStarted} />
-    </div>
+    {#key true}
+      <h1
+        class="hero__title"
+        in:fly={{ y: 30, duration: 700, delay: 100, easing: quintOut }}
+      >
+        Creá tu tienda online en minutos
+      </h1>
+    {/key}
+
+    {#key true}
+      <p
+        class="hero__description"
+        in:fly={{ y: 30, duration: 700, delay: 250, easing: quintOut }}
+      >
+        Creá tu propio negocio fácilmente con nuestra plataforma web.
+        Gestioná tu inventario, compartí catálogos con clientes y mucho más.
+      </p>
+    {/key}
+
+    {#key true}
+      <div
+        class="hero__cta"
+        in:fly={{ y: 30, duration: 700, delay: 400, easing: quintOut }}
+      >
+        <Button variant="primary" label="Empezar ahora" onClick={handleGetStarted} />
+      </div>
+    {/key}
   </div>
 
-  <div class="hero__image">
-    <img src="/img/assets/screens.png" alt="Dashboard preview of Menucom platform showing catalog and inventory management" />
-  </div>
+  {#key true}
+    <div
+      class="hero__image"
+      in:fly={{ x: 40, opacity: 0, duration: 800, delay: 500, easing: quintOut }}
+    >
+      <img src="/img/assets/screens.png" alt="Dashboard preview of Menucom platform showing catalog and inventory management" />
+    </div>
+  {/key}
 </section>
 
 <style>

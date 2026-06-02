@@ -1,4 +1,8 @@
-<footer class="footer">
+<script>
+  import { scrollReveal } from '$lib/actions/scrollReveal.js';
+</script>
+
+<footer class="footer" use:scrollReveal>
   <div class="footer__container">
     <div class="footer__brand">
       <a href="/" class="footer__logo-link">

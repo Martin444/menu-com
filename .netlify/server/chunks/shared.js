@@ -14,7 +14,7 @@ function once(fn) {
     return result = fn();
   };
 }
-const BROWSER = false;
+const browser = false;
 const SVELTE_KIT_ASSETS = "/_svelte_kit_assets";
 const ENDPOINT_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"];
 const MUTATIVE_METHODS = ["POST", "PUT", "PATCH", "DELETE"];
@@ -939,8 +939,8 @@ function unfriendly_hydratable(key, fn) {
   }
 }
 export {
-  flatten_issues as A,
-  BROWSER as B,
+  normalize_issue as A,
+  flatten_issues as B,
   deep_set as C,
   set_nested_value as D,
   ENDPOINT_METHODS as E,
@@ -951,29 +951,29 @@ export {
   SVELTE_KIT_ASSETS as S,
   TRAILING_SLASH_PARAM as T,
   normalize_error as a,
-  get_global_name as b,
-  clarify_devalue_error as c,
-  get_node_type as d,
-  noop as e,
-  escape_html as f,
+  browser as b,
+  get_global_name as c,
+  clarify_devalue_error as d,
+  get_node_type as e,
+  noop as f,
   get_status as g,
   handle_error_and_jsonify as h,
   is_form_content_type as i,
-  create_remote_key as j,
-  static_error_page as k,
-  stringify as l,
+  escape_html as j,
+  create_remote_key as k,
+  static_error_page as l,
   method_not_allowed as m,
   negotiate as n,
-  deserialize_binary_form as o,
+  stringify as o,
   parse_remote_arg as p,
-  split_remote_key as q,
+  deserialize_binary_form as q,
   redirect_response as r,
   serialize_uses as s,
-  once as t,
-  has_prerendered_path as u,
-  handle_fatal_error as v,
-  format_server_error as w,
-  unfriendly_hydratable as x,
-  create_field_proxy as y,
-  normalize_issue as z
+  split_remote_key as t,
+  once as u,
+  has_prerendered_path as v,
+  handle_fatal_error as w,
+  format_server_error as x,
+  unfriendly_hydratable as y,
+  create_field_proxy as z
 };

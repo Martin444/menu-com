@@ -1,4 +1,5 @@
 <script>
+  import { event } from '$lib/analytics/gtag.js';
   export let merchant;
 
   const coverUrl = merchant.coverImageUrl || merchant.photoURL || '/img/assets/renderStore.jpeg';
@@ -10,7 +11,7 @@
   const tags = merchant.tags || [];
 </script>
 
-<a class="merchant-card" href={`/merchant/${merchant.id}`}>
+<a class="merchant-card" href={`/merchant/${merchant.id}`} on:click={() => event('merchant_click', { merchant_name: businessName, merchant_slug: merchant.id })}>
   <div class="merchant-card__cover-wrapper">
     <img
       class="merchant-card__cover"
@@ -54,6 +55,7 @@
     text-decoration: none;
     color: inherit;
     height: 100%;
+    cursor: pointer;
   }
 
   .merchant-card:hover {

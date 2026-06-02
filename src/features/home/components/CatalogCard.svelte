@@ -1,4 +1,5 @@
 <script>
+  import { event } from '$lib/analytics/gtag.js';
   export let catalog;
 
   const coverUrl = catalog.coverImageUrl || '/img/assets/renderStore.jpeg';
@@ -8,7 +9,7 @@
   const ownerId = catalog.owner?.id;
 </script>
 
-<a class="catalog-card" href={ownerId ? `/merchant/${ownerId}` : '#'}>
+<a class="catalog-card" href={ownerId ? `/merchant/${ownerId}` : '#'} on:click={() => event('catalog_click', { catalog_title: catalog.name, catalog_slug: catalog.slug || catalog.id })}>
   <div class="catalog-card__image-wrapper">
     <img
       class="catalog-card__image"
@@ -49,6 +50,7 @@
     text-decoration: none;
     color: inherit;
     height: 100%;
+    cursor: pointer;
   }
 
   .catalog-card:hover {

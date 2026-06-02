@@ -1,6 +1,9 @@
 <script>
   import { onMount } from 'svelte';
+  import { tweened } from 'svelte/motion';
+  import { cubicOut } from 'svelte/easing';
   import { getPublicStats } from '$lib/services/merchant.service.js';
+  import { event } from '$lib/analytics/gtag.js';
 
   export let title = 'Nuestra Plataforma en Números';
 
@@ -9,45 +12,75 @@
   let loading = true;
   /** @type {string|null} */
   let error = null;
+  let visible = false;
+  /** @type {HTMLElement} */
+  let sectionEl;
 
-  onMount(async () => {
-    try {
-      stats = await getPublicStats();
-    } catch (err) {
-      error = err instanceof Error ? err.message : 'Unknown error';
-    } finally {
-      loading = false;
-    }
+  const merchantsCount = tweened(0, { duration: 1200, easing: cubicOut });
+  const catalogsCount = tweened(0, { duration: 1200, easing: cubicOut });
+  const itemsCount = tweened(0, { duration: 1200, easing: cubicOut });
+  const ordersCount = tweened(0, { duration: 1200, easing: cubicOut });
+
+  onMount(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && stats && !visible) {
+          visible = true;
+          merchantsCount.set(stats.totalMerchants);
+          catalogsCount.set(stats.totalCatalogs);
+          itemsCount.set(stats.totalItems);
+          ordersCount.set(stats.totalOrders);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionEl) observer.observe(sectionEl);
+
+    (async () => {
+      try {
+        stats = await getPublicStats();
+      } catch (err) {
+        error = err instanceof Error ? err.message : 'Unknown error';
+      } finally {
+        loading = false;
+      }
+      event('section_view', { section: 'platform_stats' });
+    })();
+
+    return () => observer.disconnect();
   });
 
   /** @param {number} num */
   function formatNumber(num) {
-    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-    if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-    return String(num);
+    const rounded = Math.round(num);
+    if (rounded >= 1000000) return (rounded / 1000000).toFixed(1) + 'M';
+    if (rounded >= 1000) return (rounded / 1000).toFixed(1) + 'K';
+    return String(rounded);
   }
 </script>
 
 {#if !error && stats}
-  <section class="platform-stats">
+  <section class="platform-stats" bind:this={sectionEl}>
     <div class="platform-stats__container">
       <h2 class="platform-stats__title">{title}</h2>
 
       <div class="platform-stats__grid">
         <div class="platform-stats__item">
-          <span class="platform-stats__number">{formatNumber(stats.totalMerchants)}</span>
+          <span class="platform-stats__number">{formatNumber($merchantsCount)}</span>
           <span class="platform-stats__label">Comerciantes</span>
         </div>
         <div class="platform-stats__item">
-          <span class="platform-stats__number">{formatNumber(stats.totalCatalogs)}</span>
+          <span class="platform-stats__number">{formatNumber($catalogsCount)}</span>
           <span class="platform-stats__label">Catálogos</span>
         </div>
         <div class="platform-stats__item">
-          <span class="platform-stats__number">{formatNumber(stats.totalItems)}</span>
+          <span class="platform-stats__number">{formatNumber($itemsCount)}</span>
           <span class="platform-stats__label">Productos</span>
         </div>
         <div class="platform-stats__item">
-          <span class="platform-stats__number">{formatNumber(stats.totalOrders)}</span>
+          <span class="platform-stats__number">{formatNumber($ordersCount)}</span>
           <span class="platform-stats__label">Pedidos</span>
         </div>
       </div>
