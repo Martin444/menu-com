@@ -10,7 +10,7 @@ return {
 	assets: new Set(["favicon.png","fonts/Sansation_1.31_ReadMe.txt","fonts/Sansation_Bold.ttf","fonts/Sansation_Bold_Italic.ttf","fonts/Sansation_Italic.ttf","fonts/Sansation_Light.ttf","fonts/Sansation_Light_Italic.ttf","fonts/Sansation_plate.jpg","fonts/Sansation_Regular.ttf","img/assets/renderStore.jpeg","img/assets/screens.png","img/logos/logomenucom 1.png","img/logos/logomenucom_1.png","robots.txt","sitemap.xml"]),
 	mimeTypes: {".png":"image/png",".txt":"text/plain",".ttf":"font/ttf",".jpg":"image/jpeg",".jpeg":"image/jpeg",".xml":"text/xml"},
 	_: {
-		client: {start:"_app/immutable/entry/start.CXvWuUlY.js",app:"_app/immutable/entry/app.PkTJAyRW.js",imports:["_app/immutable/entry/start.CXvWuUlY.js","_app/immutable/chunks/3QSiOJN3.js","_app/immutable/chunks/BRfs4m_i.js","_app/immutable/entry/app.PkTJAyRW.js","_app/immutable/chunks/BRfs4m_i.js","_app/immutable/chunks/IHki7fMi.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"_app/immutable/entry/start.sdZ-iMaC.js",app:"_app/immutable/entry/app.Dw3jb535.js",imports:["_app/immutable/entry/start.sdZ-iMaC.js","_app/immutable/chunks/BLGYaJ-A.js","_app/immutable/chunks/BRfs4m_i.js","_app/immutable/entry/app.Dw3jb535.js","_app/immutable/chunks/BRfs4m_i.js","_app/immutable/chunks/IHki7fMi.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),

@@ -5,7 +5,7 @@
   publish = ".svelte-kit/netlify"
 
 [build.environment]
-  NODE_VERSION = "18.13.0"
+  NODE_VERSION = "20"
 
 # Required environment variables (set in Netlify dashboard → Site settings → Environment variables):
 # VITE_API_URL=https://menucom-api-production.up.railway.app
