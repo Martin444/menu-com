@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { event } from '$lib/analytics/gtag.js';
+  import { event } from '$lib/analytics/firebase.js';
   import Button from "../components/Button.svelte";
 
   export let onLogin = () => {};

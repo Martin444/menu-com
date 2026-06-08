@@ -1,4 +1,4 @@
-import { event } from '$lib/analytics/gtag.js';
+import { event } from '$lib/analytics/firebase.js';
 
 const thresholds = [25, 50, 75, 100];
 

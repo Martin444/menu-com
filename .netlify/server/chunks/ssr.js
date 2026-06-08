@@ -1,13 +1,5 @@
 function noop() {
 }
-const identity = (x) => x;
-function assign(tar, src) {
-  for (const k in src) tar[k] = src[k];
-  return (
-    /** @type {T & S} */
-    tar
-  );
-}
 function run(fn) {
   return fn();
 }
@@ -370,20 +362,18 @@ const svelte = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   tick
 }, Symbol.toStringTag, { value: "Module" }));
 export {
-  afterUpdate as a,
-  svelte as b,
+  setContext as a,
+  afterUpdate as b,
   create_ssr_component as c,
-  add_attribute as d,
-  escape as e,
-  subscribe as f,
-  each as g,
-  assign as h,
-  identity as i,
-  safe_not_equal as j,
-  getContext as k,
+  svelte as d,
+  add_attribute as e,
+  escape as f,
+  subscribe as g,
+  each as h,
+  getContext as i,
   missing_component as m,
   noop as n,
   onMount as o,
-  setContext as s,
+  safe_not_equal as s,
   validate_component as v
 };

@@ -1,5 +1,5 @@
 <script>
-  import { event } from '$lib/analytics/gtag.js';
+  import { event } from '$lib/analytics/firebase.js';
   export let merchant;
 
   const coverUrl = merchant.coverImageUrl || merchant.photoURL || '/img/assets/renderStore.jpeg';

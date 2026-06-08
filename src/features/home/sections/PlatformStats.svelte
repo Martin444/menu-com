@@ -3,7 +3,7 @@
   import { tweened } from 'svelte/motion';
   import { cubicOut } from 'svelte/easing';
   import { getPublicStats } from '$lib/services/merchant.service.js';
-  import { event } from '$lib/analytics/gtag.js';
+  import { event } from '$lib/analytics/firebase.js';
 
   export let title = 'Nuestra Plataforma en Números';
 

@@ -4,7 +4,7 @@
   import { page } from '$app/stores';
   import { browser } from '$app/environment';
   import { afterNavigate } from '$app/navigation';
-  import { pageview, event } from '$lib/analytics/gtag.js';
+  import { pageview, event } from '$lib/analytics/firebase.js';
   import { scrollAnalytics } from '$lib/actions/scrollAnalytics.js';
   import Navbar from '../features/home/sections/Navbar.svelte';
   import Footer from '../features/home/sections/Footer.svelte';

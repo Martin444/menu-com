@@ -1,5 +1,7 @@
-import { c as create_ssr_component, e as escape } from "../../../../chunks/ssr.js";
+import { c as create_ssr_component, f as escape } from "../../../../chunks/ssr.js";
 import { p as page } from "../../../../chunks/stores.js";
+import "firebase/app";
+import "firebase/analytics";
 /* empty css                                                           */
 /* empty css                                                      */
 const css = {

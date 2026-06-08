@@ -1,7 +1,7 @@
 <script>
   import { fly } from 'svelte/transition';
   import { quintOut } from 'svelte/easing';
-  import { event } from '$lib/analytics/gtag.js';
+  import { event } from '$lib/analytics/firebase.js';
   import Button from "../components/Button.svelte";
 
   export let onGetStarted = () => {};

@@ -1,52 +1,40 @@
-# Analytics — Google Analytics 4 (gtag.js)
+# Analytics — Firebase Analytics
 
 ## Resumen
 
-La landing page de Menucom utiliza **Google Analytics 4** vía **gtag.js** para medir tráfico, engagement y conversiones.
+La landing page de Menucom utiliza **Firebase Analytics** (Google Analytics para Firebase) para medir tráfico, engagement y conversiones.
 
 ## Configuración
 
-### Measurement ID
+Los datos de Firebase están hardcodeados en `src/lib/analytics/firebase.js`:
 
-Se define mediante la variable de entorno `VITE_GA_MEASUREMENT_ID`:
-
-| Archivo | Valor |
-|---------|-------|
-| `.env` (desarrollo local) | `G-NGC1KBLRTH` |
-| `.env.example` | Vacío (deshabilitado por defecto) |
-| Netlify (producción) | `G-NGC1KBLRTH` |
-
-Si la variable está vacía o no definida, el analytics no se carga (no-OP total).
-
-### Cómo deshabilitar en desarrollo
-
-```bash
-# .env.local (no comiteado)
-VITE_GA_MEASUREMENT_ID=
-```
-
-O simplemente no incluir la variable.
+| Parámetro | Valor |
+|-----------|-------|
+| apiKey | `AIzaSyCIetD2sqddB9a0PyXP32BjWQEZ7fEp-Rw` |
+| projectId | `menucom-ff087` |
+| appId | `1:1053737382833:web:787bf4799cfe0063900390` |
+| measurementId | `G-G0RD42N6XR` |
 
 ## Arquitectura
 
 ```
-src/lib/analytics/gtag.js          ← Wrapper SSR-safe
+src/lib/analytics/firebase.js      ← Wrapper SSR-safe
 src/lib/actions/scrollAnalytics.js ← Scroll depth action
 src/routes/+layout.svelte          ← Pageview en SPA + CTA clicks globales
 ```
 
-### `gtag.js` — Wrapper principal
+### `firebase.js` — Wrapper principal
 
 - **SSR-safe**: No-OP si `import.meta.env.SSR` es true.
-- **Inicialización lazy**: El script gtag se inyecta dinámicamente al primer uso.
-- **`send_page_view: false`**: Se envía manualmente para evitar duplicados en SPA.
+- **Inicialización**: Firebase App y Analytics se inicializan al importar el módulo.
+- Usa la API modular v9+ (`initializeApp`, `getAnalytics`, `logEvent`).
 
 Funciones exportadas:
 
 | Función | Descripción |
 |---------|-------------|
-| `pageview(url)` | Registra una page view. Se llama desde `afterNavigate` en `+layout.svelte`. |
-| `event(action, params)` | Registra un evento custom con parámetros opcionales. |
+| `pageview(url)` | Registra una page view con `logEvent(analytics, 'page_view', { page_path, page_location })`. |
+| `event(action, params)` | Registra un evento custom con `logEvent(analytics, action, params)`. |
 
 ## Eventos trackeados
 
@@ -55,7 +43,7 @@ Funciones exportadas:
 | Evento | Disparo | Parámetros |
 |--------|---------|------------|
 | `page_view` | Cada navegación SPA (`afterNavigate`) | `page_path`, `page_location` |
-| `scroll_depth` | Scroll del usuario | `percent: 25\|50\|75\|100`, `page_path` |
+| `scroll_depth` | Scroll del usuario | `percent: 25|50|75|100`, `page_path` |
 
 ### CTA clicks
 
@@ -66,8 +54,6 @@ Funciones exportadas:
 | `HeroSection.svelte` | `cta_click` | `{ type: 'hero_cta' }` |
 | `+layout.svelte` (Login global) | `cta_click` | `{ type: 'login' }` |
 | `+layout.svelte` (Register global) | `cta_click` | `{ type: 'register' }` |
-
-Nota: Los clicks en Navbar y layout duplican el evento `cta_click` porque el Navbar llama internamente a las funciones `gotoLogin`/`gotoRegister` del layout, que también disparan el evento. Si en el futuro se desacoplan, revisar duplicación.
 
 ### Navegación a cards
 
@@ -87,7 +73,7 @@ Nota: Los clicks en Navbar y layout duplican el evento `cta_click` porque el Nav
 ## Cómo agregar un nuevo evento
 
 ```javascript
-import { event } from '$lib/analytics/gtag.js';
+import { event } from '$lib/analytics/firebase.js';
 
 // Evento simple
 event('mi_evento');
@@ -96,18 +82,15 @@ event('mi_evento');
 event('mi_evento', { clave: 'valor', numero: 42 });
 ```
 
-## Dashboard en Google Analytics
+## Dashboard en Firebase / Google Analytics
 
-1. Ir a https://analytics.google.com
-2. Seleccionar la propiedad **Menucom Landing**
-3. Secciones útiles:
-   - **Informes → Tiempo real** — verificar que los eventos llegan
-   - **Informes → Compromiso → Eventos** — todos los eventos listados arriba
-   - **Informes → Compromiso → Páginas y pantallas** — pageviews por ruta
+1. Ir a https://console.firebase.google.com
+2. Seleccionar el proyecto **menucom-ff087**
+3. Ir a **Analytics** → **Dashboard** o **Eventos**
+4. También se puede ver en https://analytics.google.com buscando la propiedad asociada
 
 ## Notas técnicas
 
-- **SPA handling**: El `send_page_view: false` en el config inicial evita el pageview doble. Las navegaciones SPA se capturan vía `afterNavigate` de SvelteKit.
-- **SSR**: Toda la lógica de analytics está protegida por `import.meta.env.SSR` — nunca se ejecuta en el servidor.
-- **Script loading**: El script de gtag.js se inyecta dinámicamente con `document.createElement('script')` lazy, no bloquea el render inicial.
-- **Ad Blockers**: gtag.js puede ser bloqueado por ad blockers. Los eventos simplemente no se enviarán, sin impacto en la funcionalidad del sitio.
+- **SPA handling**: Firebase Analytics maneja automáticamente el page_view en SPA, pero se envía manualmente en `afterNavigate` para mayor precisión.
+- **SSR**: Toda la lógica está protegida por `import.meta.env.SSR` — nunca se ejecuta en el servidor.
+- **Firebase SDK**: Se usa la API modular v9+ con tree-shaking para minimizar el bundle.

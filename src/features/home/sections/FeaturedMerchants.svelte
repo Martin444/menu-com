@@ -3,7 +3,7 @@
   import { fade } from 'svelte/transition';
   import { getFeaturedMerchants } from '$lib/services/merchant.service.js';
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
-  import { event } from '$lib/analytics/gtag.js';
+  import { event } from '$lib/analytics/firebase.js';
   import MerchantCard from '../components/MerchantCard.svelte';
 
   export let title = 'Comerciantes Destacados';

@@ -3,7 +3,7 @@
   import { fade } from 'svelte/transition';
   import { searchPublicCatalogs } from '$lib/services/catalog.service.js';
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
-  import { event } from '$lib/analytics/gtag.js';
+  import { event } from '$lib/analytics/firebase.js';
   import CatalogCard from '../components/CatalogCard.svelte';
 
   export let title = 'Catálogos Populares';

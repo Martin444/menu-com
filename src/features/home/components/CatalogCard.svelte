@@ -1,5 +1,5 @@
 <script>
-  import { event } from '$lib/analytics/gtag.js';
+  import { event } from '$lib/analytics/firebase.js';
   export let catalog;
 
   const coverUrl = catalog.coverImageUrl || '/img/assets/renderStore.jpeg';
