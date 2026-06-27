@@ -5,11 +5,19 @@
   const coverUrl = merchant.coverImageUrl || merchant.photoURL || '/img/assets/renderStore.jpeg';
   const avatarUrl = merchant.photoURL || '';
   const businessName = merchant.businessName || 'Negocio';
-  const description = merchant.description || merchant.catalogTypes?.join(', ') || '';
-  const catalogCount = merchant.catalogCount || 0;
-  const totalItems = merchant.totalItems || 0;
+  const description = merchant.description || '';
+  const commerceCount = merchant.commerceCount || 0;
   const tags = merchant.tags || [];
   const merchantSlug = merchant.slug || merchant.id;
+
+  function formatMemberSince(date) {
+    if (!date) return '';
+    const d = new Date(date);
+    const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    return `${months[d.getMonth()]} ${d.getFullYear()}`;
+  }
+
+  const memberSince = formatMemberSince(merchant.createdAt);
 </script>
 
 <a class="merchant-card" href={`/merchant/${merchantSlug}`} on:click={() => event('merchant_click', { merchant_name: businessName, merchant_slug: merchantSlug })}>
@@ -38,8 +46,10 @@
     {/if}
 
     <div class="merchant-card__stats">
-      <span class="merchant-card__stat">{catalogCount} catálogos</span>
-      <span class="merchant-card__stat">{totalItems} productos</span>
+      {#if memberSince}
+        <span class="merchant-card__stat">Desde {memberSince}</span>
+      {/if}
+      <span class="merchant-card__stat">{commerceCount} {commerceCount === 1 ? 'comercio' : 'comercios'}</span>
     </div>
   </div>
 </a>
