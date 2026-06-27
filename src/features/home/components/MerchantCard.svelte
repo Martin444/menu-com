@@ -9,9 +9,10 @@
   const catalogCount = merchant.catalogCount || 0;
   const totalItems = merchant.totalItems || 0;
   const tags = merchant.tags || [];
+  const merchantSlug = merchant.slug || merchant.id;
 </script>
 
-<a class="merchant-card" href={`/merchant/${merchant.id}`} on:click={() => event('merchant_click', { merchant_name: businessName, merchant_slug: merchant.id })}>
+<a class="merchant-card" href={`/merchant/${merchantSlug}`} on:click={() => event('merchant_click', { merchant_name: businessName, merchant_slug: merchantSlug })}>
   <div class="merchant-card__cover-wrapper">
     <img
       class="merchant-card__cover"

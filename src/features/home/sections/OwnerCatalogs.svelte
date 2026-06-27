@@ -1,9 +1,9 @@
 <script>
   import { onMount } from 'svelte';
-  import { getPublicCatalogsByOwner } from '$lib/services/catalog.service.js';
+  import { getMerchantCatalogs } from '$lib/services/merchant.service.js';
   import CatalogCard from '../components/CatalogCard.svelte';
 
-  export let ownerId;
+  export let merchantSlug;
   export let title = 'Más de este creador';
 
   /** @type {any[]} */
@@ -13,12 +13,12 @@
   let error = null;
 
   onMount(async () => {
-    if (!ownerId) {
+    if (!merchantSlug) {
       loading = false;
       return;
     }
     try {
-      catalogs = await getPublicCatalogsByOwner(ownerId);
+      catalogs = await getMerchantCatalogs(merchantSlug);
     } catch (err) {
       error = err instanceof Error ? err.message : 'Unknown error';
     } finally {
@@ -27,7 +27,7 @@
   });
 </script>
 
-{#if ownerId && !error && catalogs.length > 0}
+{#if merchantSlug && !error && catalogs.length > 0}
   <section class="owner-catalogs">
     <div class="owner-catalogs__container">
       <h2 class="owner-catalogs__title">{title}</h2>

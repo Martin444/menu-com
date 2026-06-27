@@ -1,14 +1,14 @@
 <script>
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
-  import { getPublicCatalogsByOwner } from '$lib/services/catalog.service.js';
+  import { getMerchantCatalogs } from '$lib/services/merchant.service.js';
   import CatalogCard from '../../../features/home/components/CatalogCard.svelte';
   import Button from '../../../features/home/components/Button.svelte';
 
   const MERCHANT_STORE_URL = import.meta.env.VITE_MERCHANT_STORE_URL || 'https://menu-comerce.netlify.app';
 
   function goToStore() {
-    window.location.href = `${MERCHANT_STORE_URL}/${ownerId}`;
+    window.location.href = `${MERCHANT_STORE_URL}/${merchantSlug}`;
   }
 
   /** @type {any[]} */
@@ -17,16 +17,16 @@
   /** @type {string|null} */
   let error = null;
   /** @type {string|undefined} */
-  let ownerId;
+  let merchantSlug;
 
   const unsubscribe = page.subscribe($p => {
-    ownerId = $p.params.slug;
+    merchantSlug = $p.params.slug;
   });
 
   onMount(async () => {
-    if (!ownerId) return;
+    if (!merchantSlug) return;
     try {
-      catalogs = await getPublicCatalogsByOwner(ownerId);
+      catalogs = await getMerchantCatalogs(merchantSlug);
     } catch (err) {
       error = err instanceof Error ? err.message : 'Error al cargar el comercio';
     } finally {

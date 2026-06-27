@@ -30,13 +30,3 @@ export async function getPublicCatalogBySlug(slug) {
 	const result = await httpGet(`${API_BASE_URL}/catalogs/public/${encodeURIComponent(slug)}`);
 	return result?.data || null;
 }
-
-/**
- * Obtiene los catálogos públicos de un propietario.
- * @param {string} ownerId
- * @returns {Promise<any[]>}
- */
-export async function getPublicCatalogsByOwner(ownerId) {
-	const result = await httpGet(`${API_BASE_URL}/catalogs/public/owner/${encodeURIComponent(ownerId)}`);
-	return result?.data || [];
-}

@@ -133,3 +133,53 @@ No `+layout.svelte`, no `+error.svelte`, no server endpoints, no load functions,
 
 ## Branches
 - `main` (default), `develop`, `master`, `qa` (current), `qa-DESKTOP-AQ5AGA6`
+
+---
+
+## Alineación con la Misión: Profesionalización del Emprendedor
+
+> Misión global: **Convertir a los Emprendedores en profesionales**
+
+### Rol de la Landing en la Misión
+
+La landing page es la **carta de presentación de Menucom** y la principal herramienta de **adquisición de emprendedores**. Es donde un potencial emprendedor decide si Menucom lo va a profesionalizar o no.
+
+### Lo que ya aportamos a la misión
+- ✅ Hero con propuesta de valor clara ("Crea tu tienda online en minutos")
+- ✅ Comerciantes destacados (prueba social de profesionales usando la plataforma)
+- ✅ Stats globales de plataforma (comerciantes, productos, pedidos)
+- ✅ Catálogos populares (muestra de contenido activo)
+- ✅ CTA directo a registro/login
+
+### Lo que falta para alinear mejor con la misión
+
+| Gap | Impacto en misión | Prioridad |
+|-----|-------------------|-----------|
+| **Perfiles completos de comercios** en lugar de solo cards minimalistas | Un emprendedor ve modelos a seguir | 🔴 Alta |
+| **Sección "Casos de éxito"** con métricas reales (antes/después) | Demuestra que la plataforma sí profesionaliza | 🔴 Alta |
+| **Comparativa de planes** FREE vs PREMIUM vs ENTERPRISE visible | El emprendedor entiende el valor de profesionalizarse | 🔴 Alta |
+| **Sección educativa / Blog** con guías para emprendedores | Menucom no solo da herramientas, también conocimiento | 🟡 Media |
+| **Testimonios / Reseñas** de emprendedores usando la plataforma | Poderosa prueba social | 🟡 Media |
+| **Tour interactivo** o video demostrativo del dashboard | El emprendedor se imagina usando la herramienta | 🟡 Media |
+
+### Reglas para nuevas features en la landing
+
+```javascript
+// CHECKLIST: ¿Esta feature atrae emprendedores que quieren profesionalizarse?
+// 1. ¿Muestra el valor de la plataforma?
+// 2. ¿Genera deseo de pertenecer a la comunidad?
+// 3. ¿Da confianza de que Menucom sí profesionaliza?
+// 4. ¿Comunica claramente los beneficios de cada plan?
+```
+
+### Impacto Cross-Project
+| Feature | API | Catalog PWA | Dashboard | Landing |
+|---------|-----|------------|-----------|---------|
+| BusinessProfile (display) | Public endpoints | — | — | Perfil completo |
+| Reseñas (widget) | Public endpoints | — | — | Testimonios |
+| Casos de éxito | Endpoint específico | — | — | Sección dedicada |
+| Comparativa planes | — | — | — | Tabla comparativa |
+| Blog/Guías | CMS endpoints | — | — | Sección educativa |
+
+### Documentos relacionados
+- `docs/MISSION-ALIGNMENT.md` — Análisis completo de misión (cross-project)

@@ -1,3 +1,13 @@
+---
+tags:
+  - domain/catalog
+  - repo/landing
+  - type/guide
+  - status/completed
+aliases:
+  - Public Catalog Guide Landing
+  - Implementación Catálogo Público Landing
+---
 # Guía de Implementación: Public Catalog Endpoints
 
 ## Resumen
