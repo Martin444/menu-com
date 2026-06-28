@@ -8,7 +8,7 @@
   const MERCHANT_STORE_URL = import.meta.env.VITE_MERCHANT_STORE_URL || 'https://menu-comerce.netlify.app';
 
   function goToStore() {
-    window.location.href = `${MERCHANT_STORE_URL}/${merchantSlug}`;
+    window.location.href = `${MERCHANT_STORE_URL}/${commerceSlug}`;
   }
 
   /** @type {any[]} */
@@ -17,16 +17,16 @@
   /** @type {string|null} */
   let error = null;
   /** @type {string|undefined} */
-  let merchantSlug;
+  let commerceSlug;
 
   const unsubscribe = page.subscribe($p => {
-    merchantSlug = $p.params.slug;
+    commerceSlug = $p.params.slug;
   });
 
   onMount(async () => {
-    if (!merchantSlug) return;
+    if (!commerceSlug) return;
     try {
-      catalogs = await getMerchantCatalogs(merchantSlug);
+      catalogs = await getMerchantCatalogs(commerceSlug);
     } catch (err) {
       error = err instanceof Error ? err.message : 'Error al cargar el comercio';
     } finally {
@@ -34,66 +34,66 @@
     }
   });
 
-  $: ownerName = catalogs[0]?.owner?.name || 'Comercio';
-  $: ownerPhoto = catalogs[0]?.owner?.photoURL;
+  $: commerceName = catalogs[0]?.owner?.name || 'Comercio';
+  $: commercePhoto = catalogs[0]?.owner?.photoURL;
   $: totalCatalogs = catalogs.length;
   $: totalItems = catalogs.reduce((sum, c) => sum + (c.itemCount || 0), 0);
   $: allTags = [...new Set(catalogs.flatMap(c => c.tags || []))];
 </script>
 
 <svelte:head>
-  <title>{ownerName} — Menucom</title>
+  <title>{commerceName} — Menucom</title>
 </svelte:head>
 
-<section class="merchant-page">
-  <div class="merchant-page__container">
+<section class="commerce-page">
+  <div class="commerce-page__container">
     {#if loading}
-      <div class="merchant-page__state">
+      <div class="commerce-page__state">
         <p>Cargando comercio...</p>
       </div>
     {:else if error}
-      <div class="merchant-page__state merchant-page__state--error">
+      <div class="commerce-page__state commerce-page__state--error">
         <p>{error}</p>
       </div>
     {:else if catalogs.length > 0}
-      <div class="merchant-page__header">
-        <div class="merchant-page__cover">
+      <div class="commerce-page__header">
+        <div class="commerce-page__cover">
           <img
-            class="merchant-page__cover-img"
-            src={catalogs[0].coverImageUrl || ownerPhoto || '/img/assets/renderStore.jpeg'}
-            alt={ownerName}
+            class="commerce-page__cover-img"
+            src={catalogs[0].coverImageUrl || commercePhoto || '/img/assets/renderStore.jpeg'}
+            alt={commerceName}
           />
-          {#if ownerPhoto}
-            <img class="merchant-page__avatar" src={ownerPhoto} alt={ownerName} />
+          {#if commercePhoto}
+            <img class="commerce-page__avatar" src={commercePhoto} alt={commerceName} />
           {/if}
         </div>
-        <div class="merchant-page__info">
-          <h1 class="merchant-page__name">{ownerName}</h1>
-          <div class="merchant-page__tags">
+        <div class="commerce-page__info">
+          <h1 class="commerce-page__name">{commerceName}</h1>
+          <div class="commerce-page__tags">
             {#each allTags as tag}
-              <span class="merchant-page__tag">{tag}</span>
+              <span class="commerce-page__tag">{tag}</span>
             {/each}
           </div>
-          <div class="merchant-page__stats">
-            <span class="merchant-page__stat">{totalCatalogs} catálogos</span>
-            <span class="merchant-page__stat">{totalItems} productos</span>
+          <div class="commerce-page__stats">
+            <span class="commerce-page__stat">{totalCatalogs} {totalCatalogs === 1 ? 'catálogo' : 'catálogos'}</span>
+            <span class="commerce-page__stat">{totalItems} {totalItems === 1 ? 'producto' : 'productos'}</span>
           </div>
-          <div class="merchant-page__actions">
+          <div class="commerce-page__actions">
             <Button label="Visitar tienda" variant="primary" onClick={goToStore} />
           </div>
         </div>
       </div>
 
-      <div class="merchant-page__catalogs">
-        <h2 class="merchant-page__catalogs-title">Catálogos</h2>
-        <div class="merchant-page__grid">
+      <div class="commerce-page__catalogs">
+        <h2 class="commerce-page__catalogs-title">Catálogos</h2>
+        <div class="commerce-page__grid">
           {#each catalogs as catalog (catalog.id)}
             <CatalogCard {catalog} />
           {/each}
         </div>
       </div>
     {:else}
-      <div class="merchant-page__state">
+      <div class="commerce-page__state">
         <p>Este comercio no tiene catálogos públicos aún.</p>
       </div>
     {/if}
@@ -101,21 +101,21 @@
 </section>
 
 <style>
-  .merchant-page {
+  .commerce-page {
     padding: var(--space-lg);
     background: var(--color-bg);
   }
 
-  .merchant-page__container {
+  .commerce-page__container {
     max-width: var(--container-max);
     margin: 0 auto;
   }
 
-  .merchant-page__header {
+  .commerce-page__header {
     margin-bottom: var(--space-xl);
   }
 
-  .merchant-page__cover {
+  .commerce-page__cover {
     position: relative;
     aspect-ratio: 21 / 9;
     border-radius: var(--radius-lg);
@@ -124,13 +124,13 @@
     margin-bottom: var(--space-lg);
   }
 
-  .merchant-page__cover-img {
+  .commerce-page__cover-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .merchant-page__avatar {
+  .commerce-page__avatar {
     position: absolute;
     bottom: -32px;
     left: var(--space-lg);
@@ -142,25 +142,25 @@
     background: var(--color-bg);
   }
 
-  .merchant-page__info {
+  .commerce-page__info {
     padding: var(--space-lg) 0 0;
   }
 
-  .merchant-page__name {
+  .commerce-page__name {
     font-family: var(--font-bold);
     font-size: clamp(1.5rem, 3vw, 2.2rem);
     margin-bottom: var(--space-sm);
     color: var(--color-text);
   }
 
-  .merchant-page__tags {
+  .commerce-page__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
     margin-bottom: var(--space-md);
   }
 
-  .merchant-page__tag {
+  .commerce-page__tag {
     font-family: var(--font-body);
     font-size: 0.8rem;
     background: var(--color-secondary-alpha);
@@ -169,49 +169,49 @@
     border-radius: var(--radius-sm);
   }
 
-  .merchant-page__stats {
+  .commerce-page__stats {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-lg);
   }
 
-  .merchant-page__stat {
+  .commerce-page__stat {
     font-family: var(--font-light);
     font-size: 0.9rem;
     color: var(--color-text);
     opacity: 0.7;
   }
 
-  .merchant-page__catalogs-title {
+  .commerce-page__catalogs-title {
     font-family: var(--font-bold);
     font-size: 1.5rem;
     margin-bottom: var(--space-lg);
     color: var(--color-text);
   }
 
-  .merchant-page__grid {
+  .commerce-page__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-lg);
   }
 
   @media (min-width: 640px) {
-    .merchant-page__grid {
+    .commerce-page__grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (min-width: 1024px) {
-    .merchant-page__grid {
+    .commerce-page__grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 
-  .merchant-page__actions {
+  .commerce-page__actions {
     margin-top: var(--space-lg);
   }
 
-  .merchant-page__state {
+  .commerce-page__state {
     text-align: center;
     padding: var(--space-xl) 0;
     font-family: var(--font-light);

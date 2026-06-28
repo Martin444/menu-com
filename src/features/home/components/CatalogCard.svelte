@@ -9,7 +9,7 @@
   const ownerSlug = catalog.owner?.slug || catalog.owner?.id;
 </script>
 
-<a class="catalog-card" href={ownerSlug ? `/merchant/${ownerSlug}` : '#'} on:click={() => event('catalog_click', { catalog_title: catalog.name, catalog_slug: catalog.slug || catalog.id })}>
+<a class="catalog-card" href={ownerSlug ? `/commerce/${ownerSlug}` : '#'} on:click={() => event('catalog_click', { catalog_title: catalog.name, catalog_slug: catalog.slug || catalog.id })}>
   <div class="catalog-card__image-wrapper">
     <img
       class="catalog-card__image"

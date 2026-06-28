@@ -20,7 +20,7 @@
   const memberSince = formatMemberSince(merchant.createdAt);
 </script>
 
-<a class="merchant-card" href={`/merchant/${merchantSlug}`} on:click={() => event('merchant_click', { merchant_name: businessName, merchant_slug: merchantSlug })}>
+<a class="merchant-card" href={`/commerce/${merchantSlug}`} on:click={() => event('merchant_click', { merchant_name: businessName, merchant_slug: merchantSlug })}>
   <div class="merchant-card__cover-wrapper">
     <img
       class="merchant-card__cover"

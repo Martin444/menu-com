@@ -3,7 +3,7 @@
   import { getMerchantCatalogs } from '$lib/services/merchant.service.js';
   import CatalogCard from '../components/CatalogCard.svelte';
 
-  export let merchantSlug;
+  export let commerceSlug;
   export let title = 'Más de este creador';
 
   /** @type {any[]} */
@@ -13,12 +13,12 @@
   let error = null;
 
   onMount(async () => {
-    if (!merchantSlug) {
+    if (!commerceSlug) {
       loading = false;
       return;
     }
     try {
-      catalogs = await getMerchantCatalogs(merchantSlug);
+      catalogs = await getMerchantCatalogs(commerceSlug);
     } catch (err) {
       error = err instanceof Error ? err.message : 'Unknown error';
     } finally {
@@ -27,7 +27,7 @@
   });
 </script>
 
-{#if merchantSlug && !error && catalogs.length > 0}
+{#if commerceSlug && !error && catalogs.length > 0}
   <section class="owner-catalogs">
     <div class="owner-catalogs__container">
       <h2 class="owner-catalogs__title">{title}</h2>
